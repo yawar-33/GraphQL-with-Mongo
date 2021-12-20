@@ -45,6 +45,12 @@ exports.Mutation = {
     })
     return await New_Category.save()
   },
+
+  // update category 
+  updateCategory: async (parent, { id, input }, { userId }) => {
+    return await Catagory.findByIdAndUpdate(id, { $set: { name: input.name, userId: input.userId } }).exec();
+  },
+
   // add new product
   addProduct: async (parent, { input }, { db }) => {
     const {
@@ -68,6 +74,12 @@ exports.Mutation = {
     })
 
     return await newProduct.save()
+  },
+
+  // update product 
+  updateProduct: async (parent, { id, input }, { userId }) => {
+    return await Product.findByIdAndUpdate(id, { $set: { ...input } }).exec();
+
   },
   // add new review against pro
   addReview: async (parent, { input }, { }) => {

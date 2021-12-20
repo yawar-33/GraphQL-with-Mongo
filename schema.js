@@ -18,6 +18,8 @@ exports.typeDefs = gql`
     addReview(input: AddReviewInput): Review!
     signupUser(input: AddUserInput):User!
     signinUser(input: SigninUserInput): Token!
+    updateCategory(id: ID!, input: AddCategoryInput!): Category
+    updateProduct(id:ID!, input: AddProductInput!): Product!
   }
 
   type Token{
@@ -45,6 +47,7 @@ exports.typeDefs = gql`
   type Category {
     id: ID!
     name: String!
+    userId: String
     products: [Product!]!
   }
 
@@ -63,8 +66,8 @@ exports.typeDefs = gql`
 
   input AddCategoryInput {
     name: String!
+    userId: String
   }
-
   input AddProductInput {
     name: String!
     description: String!
@@ -73,6 +76,7 @@ exports.typeDefs = gql`
     image: String!
     onSale: Boolean
     categoryId: String
+    userId: String
   }
 
   input AddReviewInput {
