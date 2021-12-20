@@ -3,6 +3,7 @@ const { gql } = require('apollo-server')
 exports.typeDefs = gql`
   type Query {
     hello: String
+    users:[User!]!
     products(filter: ProductFilterInput): [Product!]!
     product(id: ID!): Product
     categories: [Category]
@@ -15,7 +16,20 @@ exports.typeDefs = gql`
     addCategory(input: AddCategoryInput!): Category!
     addProduct(input: AddProductInput!): Product!
     addReview(input: AddReviewInput): Review!
+    signupUser(input: AddUserInput):User!
+    signinUser(input: SigninUserInput): Token!
   }
+
+  type Token{
+    token:String
+}
+  type User{
+    _id:ID!
+    firstName:String!
+    lastName:String!
+    email:String!
+    password:String!
+}
   type Product {
     id: ID!
     name: String!
@@ -68,4 +82,15 @@ exports.typeDefs = gql`
     rating: Int!
     productId: String!
   }
+
+  input AddUserInput {
+    firstName:String!
+    lastName:String!
+    email:String!
+    password:String!
+  }
+  input SigninUserInput{
+    email:String!
+    password:String!
+ }
 `

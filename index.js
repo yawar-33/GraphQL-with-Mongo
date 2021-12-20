@@ -26,6 +26,7 @@ mongoose.connection.on('error', (err) => {
 require('./modal/Product')
 require('./modal/Category')
 require('./modal/Review')
+require('./modal/User')
 // import Query resolvers
 const { Query } = require('./resolvers/Query')
 const { Product } = require('./resolvers/Product')
